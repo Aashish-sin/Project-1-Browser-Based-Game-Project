@@ -3,6 +3,7 @@ h1 {
   flex-flow: column wrap;
   justify-content: space-between;
   align-content: center;
+  font-family: monospace;
 }
 
 body {
@@ -12,7 +13,7 @@ body {
   align-content: center;
 }
 
-.Score {
+.score {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +21,7 @@ body {
   font-size: 20px;
 }
 
-.Game {
+.game {
   width: 600px;
   height: 200px;
   border: 1px solid black;
@@ -70,13 +71,14 @@ body {
 
 @keyframes slide {
   0% {
-    left: 580px;}
+    left: 580px;
+  }
   100% {
     left: 0px;
   }
 }
 
-.Reset {
+.reset {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -84,4 +86,16 @@ body {
   padding: 10px 20px;
   font-size: 16px;
   margin-top: 15px;
+}
+
+.h {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+#H {
+  color: blue;
 }
