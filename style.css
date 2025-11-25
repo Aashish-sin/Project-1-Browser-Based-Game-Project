@@ -1,0 +1,87 @@
+h1 {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-content: center;
+}
+
+body {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.Score {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+  font-size: 20px;
+}
+
+.Game {
+  width: 600px;
+  height: 200px;
+  border: 1px solid black;
+  margin: auto;
+}
+
+#C {
+  width: 30px;
+  height: 50px;
+  background-color: red;
+  position: relative;
+  top: 150px;
+  left: 50px;
+}
+
+.jump {
+  animation: jump 500ms linear;
+}
+
+@keyframes jump {
+  0% {
+    top: 150px;
+  }
+  30% {
+    top: 100px;
+  }
+  70% {
+    top: 100px;
+  }
+  100% {
+    top: 150x;
+  }
+}
+
+#O {
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  position: relative;
+  top: 130px;
+  left: 580px;
+}
+
+.slide {
+  animation: 1.5s linear 1s infinite running slide;
+}
+
+@keyframes slide {
+  0% {
+    left: 580px;}
+  100% {
+    left: 0px;
+  }
+}
+
+.Reset {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-content: center;
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 15px;
+}
