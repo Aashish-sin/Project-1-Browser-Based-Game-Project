@@ -1,35 +1,29 @@
 const scoreDisplay = document.querySelector("#S");
 const char = document.querySelector("#C");
 const obs = document.querySelector("#O");
-const resetButton = document.querySelector("#R");
+const startButton = document.querySelector("#sT");
 const highScoreDisplay = document.querySelector("#H");
-const resetHighScore = document.querySelector("#R2");
+const resetHighScore = document.querySelector("#R");
 
 let startCon = false;
 var scoreCounter;
 let score = 0;
 
-let currentAnimationDuration = 2;
 const MIN_SPEED_DURATION = 0.5;
 const SPEED_DECREMENT = 0.001;
 const SPEED_THRESHOLD = 50;
 
 displayHighScores();
 
-function randomizeObstacleStyle() {
-  const randomSize = Math.floor(Math.random() * 11) + 10;
-  obs.style.width = `${randomSize}px`;
-  obs.style.height = `20px`;
-  obs.style.animationDuration = `${currentAnimationDuration}s`;
-  console.log(
-    `Obstacle Randomized: Size=${randomSize}px, Radius=${obs.style.borderRadius}`
-  );
+function displayHighScores() {
+  const highScore = localStorage.getItem("highScore") || 0;
+  highScoreDisplay.textContent = highScore;
 }
 
 function startGame() {
   if (startCon === false) {
     startCon = true;
-    currentAnimationDuration = 2;
+    currentAnimationDuration = 3;
     randomizeObstacleStyle();
     obs.classList.add("slide");
     obs.style.animationDuration = `${currentAnimationDuration}s`;
@@ -40,6 +34,18 @@ function startGame() {
     }, 1);
     obs.addEventListener("animationiteration", randomizeObstacleStyle);
   }
+}
+
+function randomizeObstacleStyle() {
+  const randomSize = Math.floor(Math.random() * 11) + 5;
+  obs.style.width = `${randomSize}px`;
+  obs.style.height = `20px`;
+  obs.style.animationDuration = `${currentAnimationDuration}s`;
+  /*
+  console.log(
+    `Obstacle Randomized: Size=${randomSize}px,`
+  );
+  */
 }
 
 function updateScoreAndSpeed() {
@@ -55,9 +61,11 @@ function updateScoreAndSpeed() {
       currentAnimationDuration -= SPEED_DECREMENT;
       obs.style.animationDuration = `${currentAnimationDuration}s`;
       obs.style.animationPlayState = "running";
+      /*
       console.log(
         `Speed increased! New duration: ${currentAnimationDuration}s`
       );
+      */
     }
   }
 }
@@ -75,15 +83,6 @@ document.addEventListener("click", function () {
   }
 });
 
-function endGame() {
-  obs.classList.remove("slide");
-  obs.style.animationDuration = ``;
-  void obs.offsetWidth;
-  clearInterval(scoreCounter);
-  startCon = false;
-  obs.removeEventListener("animationiteration", randomizeObstacleStyle);
-}
-
 var checkLose = setInterval(function () {
   var charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
   var obsLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left"));
@@ -94,13 +93,14 @@ var checkLose = setInterval(function () {
   }
 }, 10);
 
-resetButton.addEventListener("click", function () {
-  endGame();
-  scoreDisplay.textContent = 0;
-  score = 0;
-  scoreCounter = 0;
-  startGame();
-});
+function endGame() {
+  obs.classList.remove("slide");
+  obs.style.animationDuration = ``;
+  void obs.offsetWidth;
+  clearInterval(scoreCounter);
+  startCon = false;
+  obs.removeEventListener("animationiteration", randomizeObstacleStyle);
+}
 
 function saveHighScore() {
   const highScore = parseInt(localStorage.getItem("highScore")) || 0;
@@ -108,10 +108,14 @@ function saveHighScore() {
     localStorage.setItem("highScore", score);
   }
 }
-function displayHighScores() {
-  const highScore = localStorage.getItem("highScore") || 0;
-  highScoreDisplay.textContent = highScore;
-}
+
+startButton.addEventListener("click", function () {
+  endGame();
+  scoreDisplay.textContent = 0;
+  score = 0;
+  scoreCounter = 0;
+  startGame();
+});
 
 resetHighScore.addEventListener("click", function () {
   localStorage.removeItem("highScore");

@@ -9,7 +9,7 @@ h1 {
 body {
   display: flex;
   flex-flow: column wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-content: center;
   background-color: gray;
 }
@@ -84,7 +84,7 @@ body {
   }
 }
 
-.reset {
+.sT {
   display: flex;
   flex-flow: column wrap;
   justify-content: space-between;
@@ -104,4 +104,10 @@ body {
 
 #H {
   color: blue;
+}
+
+.reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
