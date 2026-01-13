@@ -11,7 +11,7 @@ let score = 0;
 
 const MIN_SPEED_DURATION = 0.5;
 const SPEED_DECREMENT = 0.001;
-const SPEED_THRESHOLD = 50;
+const SPEED_THRESHOLD = 1;
 
 displayHighScores();
 
@@ -83,7 +83,7 @@ document.addEventListener("click", function () {
   }
 });
 
-var checkLose = setInterval(function () {
+checkLose = setInterval(function () {
   var charTop = parseInt(window.getComputedStyle(char).getPropertyValue("top"));
   var obsLeft = parseInt(window.getComputedStyle(obs).getPropertyValue("left"));
   if (obsLeft < 70 && obsLeft > 50 && charTop >= 130 && startCon == true) {
